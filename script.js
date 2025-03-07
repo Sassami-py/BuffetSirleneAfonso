@@ -1,219 +1,155 @@
-// Variáveis para controle das seções
-const sectionCardapio = document.getElementById('sectionCardapio');
-const sectionContatos = document.getElementById('sectionContatos');
-const navCardapio = document.getElementById('navCardapio');
-const navContatos = document.getElementById('navContatos');
-
-// Função para alternar entre as seções
-function showSection(section) {
-  sectionCardapio.classList.remove('active');
-  sectionContatos.classList.remove('active');
-  section.classList.add('active');
+/* Estilo do body e da imagem de fundo */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('sua-imagem-de-fundo.jpg') no-repeat center center fixed; /* Use o arquivo "sua-imagem-de-fundo.jpg" */
+  background-size: cover;
+  color: #333;
 }
 
-// Eventos de navegação
-navCardapio.addEventListener('click', () => showSection(sectionCardapio));
-navContatos.addEventListener('click', () => showSection(sectionContatos));
-
-// Modal
-const modal = document.getElementById('modal');
-const modalBody = document.getElementById('modal-body');
-const modalClose = document.getElementById('modal-close');
-const btnWhatsapp = document.getElementById('btnWhatsapp');
-
-// Dados dos cardápios com listas de itens e espaço para imagens
-const cardapios = {
-  detalheChurrasco: {
-    titulo: "Cardápio de Churrasco",
-    conteudo: `
-      <table class="menu-table">
-        <tr>
-          <td><img src="placeholder.jpg" alt="Arroz"></td>
-          <td>Arroz</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Feijão Tropeiro"></td>
-          <td>Feijão Tropeiro</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Mandioca"></td>
-          <td>Mandioca</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Vinagrete"></td>
-          <td>Vinagrete</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Contra Filé"></td>
-          <td>Contra Filé</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Fraldinha"></td>
-          <td>Fraldinha</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Linguiça Toscan"></td>
-          <td>Linguiça Toscan</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Coxinha da Asa"></td>
-          <td>Coxinha da Asa</td>
-        </tr>
-      </table>
-    `,
-    whatsappMsg: "Olá, gostaria de solicitar um orçamento para o Cardápio de Churrasco"
-  },
-  detalheJantar: {
-    titulo: "Cardápio de Jantar",
-    conteudo: `
-      <p class="menu-section-title">Entrada:</p>
-      <table class="menu-table">
-        <tr>
-          <td><img src="placeholder.jpg" alt="Salaminhi"></td>
-          <td>Salaminhi</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Lombo Canadense"></td>
-          <td>Lombo Canadense</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Peito de Peru"></td>
-          <td>Peito de Peru</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Mussarela"></td>
-          <td>Mussarela</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Provolone"></td>
-          <td>Provolone</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Parmesão"></td>
-          <td>Parmesão</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Brie com Mel e Castanhas"></td>
-          <td>Brie com Mel e Castanhas</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Frutas"></td>
-          <td>Frutas</td>
-        </tr>
-      </table>
-      <p class="menu-section-title">Jantar:</p>
-      <table class="menu-table">
-        <tr>
-          <td><img src="placeholder.jpg" alt="Arroz"></td>
-          <td>Arroz</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Salada Tropical"></td>
-          <td>Salada Tropical</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Filé de Frango ao Molho de 4 Queijos"></td>
-          <td>Filé de Frango ao Molho de 4 Queijos</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Lagarto ao Molho Madeira"></td>
-          <td>Lagarto ao Molho Madeira</td>
-        </tr>
-      </table>
-    `,
-    whatsappMsg: "Olá, gostaria de solicitar um orçamento para o Cardápio de Jantar"
-  },
-  detalheFeijoada: {
-    titulo: "Cardápio de Feijoada",
-    conteudo: `
-      <p class="menu-section-title">Entradas:</p>
-      <table class="menu-table">
-        <tr>
-          <td><img src="placeholder.jpg" alt="Torresmo"></td>
-          <td>Torresmo</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Fritas"></td>
-          <td>Fritas</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Calabresa Acebolada"></td>
-          <td>Calabresa Acebolada</td>
-        </tr>
-      </table>
-      <p class="menu-section-title">Prato Principal:</p>
-      <table class="menu-table">
-        <tr>
-          <td><img src="placeholder.jpg" alt="Arroz"></td>
-          <td>Arroz</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Feijoada Completa"></td>
-          <td>Feijoada Completa</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Vinagrete"></td>
-          <td>Vinagrete</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Farofa de Banana"></td>
-          <td>Farofa de Banana</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Couve Refogada"></td>
-          <td>Couve Refogada</td>
-        </tr>
-        <tr>
-          <td><img src="placeholder.jpg" alt="Laranja e Abacaxi Picados"></td>
-          <td>Laranja e Abacaxi Picados</td>
-        </tr>
-      </table>
-    `,
-    whatsappMsg: "Olá, gostaria de solicitar um orçamento para o Cardápio de Feijoada"
-  }
-};
-
-// Função para abrir o modal com os detalhes do cardápio
-function openModal(detailId) {
-  const dados = cardapios[detailId];
-  if (dados) {
-    modalBody.innerHTML = `<h2>${dados.titulo}</h2>${dados.conteudo}`;
-    const numeroWhats = "62991674061"; // Número da dona do buffet
-    btnWhatsapp.onclick = function() {
-      const url = `https://wa.me/${numeroWhats}?text=${encodeURIComponent(dados.whatsappMsg)}`;
-      window.open(url, '_blank');
-    };
-    modal.style.display = "block";
-  }
+/* Barra de navegação fixa */
+nav {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
-// Fechar o modal ao clicar no "X"
-modalClose.addEventListener('click', () => {
-  modal.style.display = "none";
-});
+nav button {
+  background-color: #0078D7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
 
-// Fechar o modal se o usuário clicar fora dele
-window.addEventListener('click', (event) => {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-});
+/* Seções: caixa centralizada em vez de tela inteira */
+.section {
+  display: none;
+  max-width: 800px;
+  margin: 120px auto 20px; /* espaço acima para a nav */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
 
-// Adicionar eventos para os itens do cardápio
-const itensCardapio = document.querySelectorAll('.cardapio-item');
-itensCardapio.forEach(item => {
-  item.addEventListener('click', (e) => {
-    e.preventDefault();
-    const detailId = item.getAttribute('data-detail');
-    openModal(detailId);
-  });
-});
+.section.active {
+  display: block;
+}
 
-// Adicionar eventos para os ícones de contatos
-const contactIcons = document.querySelectorAll('.contact-icon');
-contactIcons.forEach(icon => {
-  icon.addEventListener('click', () => {
-    const link = icon.getAttribute('data-link');
-    window.open(link, '_blank');
-  });
-});
+h1 {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 0;
+}
+
+/* Estilo dos links da lista do cardápio */
+ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #0078D7;
+  font-size: 18px;
+}
+
+/* Modal para detalhes do cardápio */
+.modal {
+  display: none; /* oculto inicialmente */
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  border-radius: 8px;
+}
+
+.modal-close {
+  color: #aaa;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#btnWhatsapp {
+  background-color: #25D366;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+}
+
+/* Seção de contatos: exibir ícones em lista */
+.contacts-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.contact-icon {
+  width: 60px;
+  margin: 10px auto; /* centraliza e coloca um espaçamento vertical */
+  display: block;
+  cursor: pointer;
+}
+
+/* Tabelas de cardápio: aumentar visualização e espaçamento */
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.menu-table td {
+  vertical-align: top;
+  padding: 10px;
+  font-size: 1.1em;
+}
+
+.menu-table img {
+  width: 80px;
+  height: auto;
+  display: block;
+}
+
+.menu-section-title {
+  margin-top: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.2em;
+}
