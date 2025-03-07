@@ -115,17 +115,16 @@ ul li a {
   width: 100%;
 }
 
-/* Seção de contatos: exibir ícones em lista */
+/* Seção de contatos: exibir ícones em lista, maiores e um abaixo do outro */
 .contacts-container {
   text-align: center;
   padding: 20px;
 }
 
 .contact-icon {
-  width: 60px;
-  margin: 10px auto; /* centraliza e coloca um espaçamento vertical */
   display: block;
-  cursor: pointer;
+  margin: 20px auto; /* centraliza e coloca espaçamento vertical */
+  width: 120px; /* ajuste para tamanho maior */
 }
 
 /* Tabelas de cardápio: aumentar visualização e espaçamento */
