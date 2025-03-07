@@ -1,0 +1,146 @@
+/* Estilo do body e da imagem de fundo */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('sua-imagem-de-fundo.jpg') no-repeat center center fixed; /* Use o arquivo "sua-imagem-de-fundo.jpg" */
+  background-size: cover;
+  color: #333;
+}
+
+/* Estilo da barra de navegação */
+nav {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+nav button {
+  background-color: #0078D7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+/* Seções do site */
+.section {
+  display: none;
+  padding: 80px 20px 20px; /* espaço para a nav fixa */
+  min-height: 100vh;
+  background-color: rgba(255,255,255,0.9);
+}
+
+.section.active {
+  display: block;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #0078D7;
+  font-size: 18px;
+}
+
+/* Modal para exibir os detalhes do cardápio */
+.modal {
+  display: none; /* oculto inicialmente */
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  border-radius: 8px;
+}
+
+.modal-close {
+  color: #aaa;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#btnWhatsapp {
+  background-color: #25D366;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+}
+
+/* Estilo para a seção de contatos */
+.contact-icon {
+  width: 60px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.contacts-container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Estilo para as tabelas de cardápio */
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.menu-table td {
+  vertical-align: top;
+  padding: 5px;
+}
+
+.menu-table img {
+  width: 80px;
+  height: auto;
+  display: block;
+}
+
+.menu-section-title {
+  margin-top: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+}
