@@ -77,16 +77,16 @@ ul li {
 
 ul li a {
   text-decoration: none;
-  color: #000000;
+  color: #000;
   font-size: 20px;
-  border-bottom: 1px dashed #000000;
+  border-bottom: 1px dashed #000;
   padding-bottom: 3px;
   transition: color 0.3s, border-color 0.3s;
 }
 
 ul li a:hover {
-  color: #0078D7;
-  border-color: #0078D7;
+  color: #ecf3f7;
+  border-color: #ecf3f7;
 }
 
 /* Modal: centralizado, caixa branca */
@@ -150,7 +150,7 @@ ul li a:hover {
 /* Seção de contatos: exibir links em lista */
 .contacts-container {
   text-align: center;
-  padding: 30px;
+  padding: 300px;
 }
 
 .contacts-list {
