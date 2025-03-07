@@ -1,154 +1,124 @@
-/* Estilo do body e da imagem de fundo */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: url('sua-imagem-de-fundo.jpg') no-repeat center center fixed; /* Use o arquivo "sua-imagem-de-fundo.jpg" */
-  background-size: cover;
-  color: #333;
+// Referências aos elementos das seções e da navegação
+const sectionCardapio = document.getElementById('sectionCardapio');
+const sectionContatos = document.getElementById('sectionContatos');
+const navCardapio = document.getElementById('navCardapio');
+const navContatos = document.getElementById('navContatos');
+
+// Função para alternar entre as seções
+function showSection(section) {
+  sectionCardapio.classList.remove('active');
+  sectionContatos.classList.remove('active');
+  section.classList.add('active');
 }
 
-/* Barra de navegação fixa */
-nav {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10;
+// Eventos para os botões de navegação
+navCardapio.addEventListener('click', () => showSection(sectionCardapio));
+navContatos.addEventListener('click', () => showSection(sectionContatos));
+
+// Referências ao modal e seus elementos
+const modal = document.getElementById('modal');
+const modalBody = document.getElementById('modal-body');
+const modalClose = document.getElementById('modal-close');
+const btnWhatsapp = document.getElementById('btnWhatsapp');
+
+// Dados dos cardápios sem imagens, apenas texto
+const cardapios = {
+  detalheChurrasco: {
+    titulo: "Cardápio de Churrasco",
+    conteudo: `
+      <h3>Itens:</h3>
+      <ul>
+        <li>Arroz</li>
+        <li>Feijão Tropeiro</li>
+        <li>Mandioca</li>
+        <li>Vinagrete</li>
+        <li>Contra Filé</li>
+        <li>Fraldinha</li>
+        <li>Linguiça Toscan</li>
+        <li>Coxinha da Asa</li>
+      </ul>
+    `,
+    whatsappMsg: "Olá, gostaria de solicitar um orçamento para o Cardápio de Churrasco"
+  },
+  detalheJantar: {
+    titulo: "Cardápio de Jantar",
+    conteudo: `
+      <h3>Entrada:</h3>
+      <ul>
+        <li>Salaminhi</li>
+        <li>Lombo Canadense</li>
+        <li>Peito de Peru</li>
+        <li>Mussarela</li>
+        <li>Provolone</li>
+        <li>Parmesão</li>
+        <li>Brie com Mel e Castanhas</li>
+        <li>Frutas</li>
+      </ul>
+      <h3>Jantar:</h3>
+      <ul>
+        <li>Arroz</li>
+        <li>Salada Tropical</li>
+        <li>Filé de Frango ao Molho de 4 Queijos</li>
+        <li>Lagarto ao Molho Madeira</li>
+      </ul>
+    `,
+    whatsappMsg: "Olá, gostaria de solicitar um orçamento para o Cardápio de Jantar"
+  },
+  detalheFeijoada: {
+    titulo: "Cardápio de Feijoada",
+    conteudo: `
+      <h3>Entradas:</h3>
+      <ul>
+        <li>Torresmo</li>
+        <li>Fritas</li>
+        <li>Calabresa Acebolada</li>
+      </ul>
+      <h3>Prato Principal:</h3>
+      <ul>
+        <li>Arroz</li>
+        <li>Feijoada Completa</li>
+        <li>Vinagrete</li>
+        <li>Farofa de Banana</li>
+        <li>Couve Refogada</li>
+        <li>Laranja e Abacaxi Picados</li>
+      </ul>
+    `,
+    whatsappMsg: "Olá, gostaria de solicitar um orçamento para o Cardápio de Feijoada"
+  }
+};
+
+// Função para abrir o modal com os detalhes do cardápio
+function openModal(detailId) {
+  const dados = cardapios[detailId];
+  if (dados) {
+    modalBody.innerHTML = `<h2>${dados.titulo}</h2>${dados.conteudo}`;
+    const numeroWhats = "62991674061"; // Número da dona do buffet
+    btnWhatsapp.onclick = function() {
+      const url = `https://wa.me/${numeroWhats}?text=${encodeURIComponent(dados.whatsappMsg)}`;
+      window.open(url, '_blank');
+    };
+    modal.style.display = "block";
+  }
 }
 
-nav button {
-  background-color: #0078D7;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-}
+// Evento para fechar o modal ao clicar no "X"
+modalClose.addEventListener('click', () => {
+  modal.style.display = "none";
+});
 
-/* Seções: caixa centralizada em vez de tela inteira */
-.section {
-  display: none;
-  max-width: 800px;
-  margin: 120px auto 20px; /* espaço acima para a nav */
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
+// Fecha o modal se o usuário clicar fora dele
+window.addEventListener('click', (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});
 
-.section.active {
-  display: block;
-}
-
-h1 {
-  text-align: center;
-  font-size: 2em;
-  margin-top: 0;
-}
-
-/* Estilo dos links da lista do cardápio */
-ul {
-  list-style-type: none;
-  padding: 0;
-  text-align: center;
-}
-
-ul li {
-  margin: 10px 0;
-}
-
-ul li a {
-  text-decoration: none;
-  color: #0078D7;
-  font-size: 18px;
-}
-
-/* Modal para detalhes do cardápio */
-.modal {
-  display: none; /* oculto inicialmente */
-  position: fixed;
-  z-index: 20;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 90%;
-  max-width: 600px;
-  position: relative;
-  border-radius: 8px;
-}
-
-.modal-close {
-  color: #aaa;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#btnWhatsapp {
-  background-color: #25D366;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 20px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-  display: block;
-  width: 100%;
-}
-
-/* Seção de contatos: exibir ícones em lista, maiores e um abaixo do outro */
-.contacts-container {
-  text-align: center;
-  padding: 40px;
-}
-
-.contact-icon {
-  display: block;
-  margin: 30px auto; /* aumenta o espaçamento vertical */
-  width: 200px; /* aumenta o tamanho dos ícones */
-}
-
-/* Tabelas de cardápio: aumentar visualização e espaçamento */
-.menu-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-.menu-table td {
-  vertical-align: top;
-  padding: 10px;
-  font-size: 1.1em;
-}
-
-.menu-table img {
-  width: 80px;
-  height: auto;
-  display: block;
-}
-
-.menu-section-title {
-  margin-top: 20px;
-  font-weight: bold;
-  text-decoration: underline;
-  font-size: 1.2em;
-}
+// Adiciona eventos para os itens do cardápio na lista
+const itensCardapio = document.querySelectorAll('.cardapio-item');
+itensCardapio.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const detailId = item.getAttribute('data-detail');
+    openModal(detailId);
+  });
+});
