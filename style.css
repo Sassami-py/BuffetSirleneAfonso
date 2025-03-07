@@ -1,41 +1,57 @@
-/* Estilo do body e da imagem de fundo */
-body {
+/* Reset básico */
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: url('sua-imagem-de-fundo.jpg') no-repeat center center fixed; /* Use o arquivo "sua-imagem-de-fundo.jpg" */
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte formal e elegante */
+body {
+  font-family: 'Georgia', serif;
+  background: url('sua-imagem-de-fundo.jpg') no-repeat center center fixed; /* Use sua imagem de fundo */
   background-size: cover;
   color: #333;
 }
 
-/* Estilo da barra de navegação */
+/* Barra de navegação: fundo branco, textos pretos */
 nav {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
+  background-color: #ffffff;
+  padding: 15px;
   text-align: center;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 100;
 }
 
 nav button {
-  background-color: #0078D7;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 10px 25px;
+  margin: 0 10px;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Seções do site */
+nav button:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Seções: caixas brancas centralizadas, sem ocupar toda a tela */
 .section {
   display: none;
-  padding: 80px 20px 20px; /* espaço para a nav fixa */
-  min-height: 100vh;
-  background-color: rgba(255,255,255,0.9);
+  max-width: 800px;
+  margin: 120px auto 40px; /* espaço acima para a nav */
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 
 .section.active {
@@ -44,103 +60,138 @@ nav button {
 
 h1 {
   text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
 }
 
+/* Lista de cardápios com estilo formal */
 ul {
-  list-style-type: none;
-  padding: 0;
+  list-style: none;
   text-align: center;
+  margin: 20px 0;
 }
 
 ul li {
-  margin: 10px 0;
+  margin: 15px 0;
 }
 
 ul li a {
   text-decoration: none;
-  color: #0078D7;
-  font-size: 18px;
+  color: #000000;
+  font-size: 20px;
+  border-bottom: 1px dashed #000000;
+  padding-bottom: 3px;
+  transition: color 0.3s, border-color 0.3s;
 }
 
-/* Modal para exibir os detalhes do cardápio */
+ul li a:hover {
+  color: #0078D7;
+  border-color: #0078D7;
+}
+
+/* Modal: centralizado, caixa branca */
 .modal {
-  display: none; /* oculto inicialmente */
+  display: none;
   position: fixed;
-  z-index: 20;
+  z-index: 200;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 5% auto;
-  padding: 20px;
+  background-color: #ffffff;
+  margin: 10% auto;
+  padding: 25px;
   border: 1px solid #888;
   width: 90%;
   max-width: 600px;
-  position: relative;
   border-radius: 8px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .modal-close {
   color: #aaa;
   position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 28px;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
   font-weight: bold;
   cursor: pointer;
 }
 
+.modal-close:hover,
+.modal-close:focus {
+  color: #000;
+}
+
+/* Botão do WhatsApp no modal */
 #btnWhatsapp {
   background-color: #25D366;
-  color: white;
+  color: #ffffff;
   border: none;
-  padding: 10px 20px;
+  padding: 15px;
   margin-top: 20px;
+  font-size: 18px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-  display: block;
   width: 100%;
+  transition: background-color 0.3s;
 }
 
-/* Estilo para a seção de contatos */
-.contact-icon {
-  width: 60px;
-  margin: 10px;
-  cursor: pointer;
+#btnWhatsapp:hover {
+  background-color: #1da851;
 }
 
+/* Seção de contatos: exibir links em lista */
 .contacts-container {
   text-align: center;
-  padding: 20px;
+  padding: 30px;
 }
 
-/* Estilo para as tabelas de cardápio */
+.contacts-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contacts-list li {
+  margin: 20px 0;
+}
+
+.contacts-list li a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 22px;
+  border-bottom: 1px dashed #000000;
+  padding-bottom: 5px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.contacts-list li a:hover {
+  color: #0078D7;
+  border-color: #0078D7;
+}
+
+/* Estilos adicionais para tabelas de cardápio (caso sejam usados futuramente) */
 .menu-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .menu-table td {
+  padding: 10px;
+  font-size: 1.2em;
   vertical-align: top;
-  padding: 5px;
-}
-
-.menu-table img {
-  width: 80px;
-  height: auto;
-  display: block;
 }
 
 .menu-section-title {
-  margin-top: 20px;
   font-weight: bold;
   text-decoration: underline;
+  font-size: 1.5em;
+  margin: 20px 0 10px;
 }
