@@ -118,13 +118,13 @@ ul li a {
 /* Seção de contatos: exibir ícones em lista, maiores e um abaixo do outro */
 .contacts-container {
   text-align: center;
-  padding: 20px;
+  padding: 40px;
 }
 
 .contact-icon {
   display: block;
-  margin: 20px auto; /* centraliza e coloca espaçamento vertical */
-  width: 120px; /* ajuste para tamanho maior */
+  margin: 30px auto; /* aumenta o espaçamento vertical */
+  width: 200px; /* aumenta o tamanho dos ícones */
 }
 
 /* Tabelas de cardápio: aumentar visualização e espaçamento */
